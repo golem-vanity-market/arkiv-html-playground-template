@@ -1,15 +1,15 @@
-import {
-  createPublicClient as ViemCreatePublicClient,
-} from "viem";
+import { createPublicClient as ViemCreatePublicClient } from "viem";
 import {
   createPublicClient,
   createWalletClient,
-  http, type PublicArkivClient, type WalletArkivClient,
+  http,
+  type PublicArkivClient,
+  type WalletArkivClient,
 } from "@arkiv-network/sdk";
 import { rosario } from "@arkiv-network/sdk/chains";
 import "viem/window";
-import { privateKeyToAccount } from "@arkiv-network/sdk/accounts"
-import {type PublicClient} from "viem";
+import { privateKeyToAccount } from "@arkiv-network/sdk/accounts";
+import { type PublicClient } from "viem";
 
 class EasyRpcClients {
   publicViemClient: PublicClient;
@@ -19,7 +19,7 @@ class EasyRpcClients {
   constructor(
     publicViemClient: PublicClient,
     publicClient: PublicArkivClient,
-    walletClient: WalletArkivClient
+    walletClient: WalletArkivClient,
   ) {
     this.publicViemClient = publicViemClient;
     this.publicClient = publicClient;
@@ -37,11 +37,7 @@ class EasyRpcClients {
   }
 }
 
-
-
-
 let currentClients: EasyRpcClients | null = null;
-
 
 export function cleanLocalStorageKey() {
   const keyName = "arkiv:local:privateKey";
@@ -56,8 +52,10 @@ function getOrCreateLocalStorageKey() {
   }
 
   const bytes = crypto.getRandomValues(new Uint8Array(32));
-  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
-  const privateKey = (`0x${hex}`) as `0x${string}`;
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join(
+    "",
+  );
+  const privateKey = `0x${hex}` as `0x${string}`;
   localStorage.setItem(keyName, privateKey);
   return privateKey;
 }
@@ -68,18 +66,18 @@ export function createArkivClients(): EasyRpcClients {
     transport: http(), // use the default RPC defined in the chain object
   });
 
-	const publicClient = createPublicClient({
-		chain: rosario,
-		transport: http(), // use the default RPC defined in the chain object
-	});
+  const publicClient = createPublicClient({
+    chain: rosario,
+    transport: http(), // use the default RPC defined in the chain object
+  });
 
-	const walletClient = createWalletClient({
-		chain: rosario,
-		account: privateKeyToAccount(getOrCreateLocalStorageKey()),
+  const walletClient = createWalletClient({
+    chain: rosario,
+    account: privateKeyToAccount(getOrCreateLocalStorageKey()),
     transport: http(),
-	});
+  });
 
-	return new EasyRpcClients(publicViemClient, publicClient, walletClient);
+  return new EasyRpcClients(publicViemClient, publicClient, walletClient);
 }
 
 export function connectWallet() {
