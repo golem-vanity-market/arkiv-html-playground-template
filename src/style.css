@@ -84,61 +84,16 @@ button:disabled {
   overflow-y: auto;
 }
 
-#sketch-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.sketch-item {
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 8px;
-  transition: transform 0.2s;
-}
-
-.sketch-item:hover {
-  transform: translateX(4px);
-}
-
-.sketch-item img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 6px;
-}
-
-.sketch-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 4px;
-}
-
 .entity-link {
   display: block;
-  font-size: 11px;
-  color: #0066ff;
-  text-decoration: underline;
-  word-break: break-all;
+  font-size: 12px;
+  color: #aaaaaa;
+  text-decoration: none;
+  word-break: manual;
 }
 
 .entity-link:hover {
   color: #0052cc;
-}
-
-#canvas-container {
-  margin-bottom: 15px;
-  border: 2px solid #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-#canvas-container canvas {
-  display: block;
-  cursor: crosshair;
 }
 
 .controls {
@@ -150,10 +105,3 @@ button:disabled {
   flex: 1;
 }
 
-#reset-btn {
-  background: #666;
-}
-
-#reset-btn:hover:not(:disabled) {
-  background: #555;
-}

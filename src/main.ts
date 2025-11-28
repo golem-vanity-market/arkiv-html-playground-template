@@ -20,7 +20,7 @@ async function init() {
   const clients = await connectWallet();
 
   accountBalance.textContent = "";
-  accountDiv.innerHTML = `<a href="https://explorer.rosario.hoodi.arkiv.network/address/${clients.getAddress()}" target="_blank" rel="noopener noreferrer">${clients.getAddress()}</a>`;
+  accountDiv.innerHTML = `<a class="entity-link" href="https://explorer.rosario.hoodi.arkiv.network/address/${clients.getAddress()}" target="_blank" rel="noopener noreferrer">${clients.getAddress()}</a>`;
 
   const balance = await clients.getBalance();
   const ethBalance = Number(balance) / 1e18;
